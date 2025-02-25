@@ -1,0 +1,57 @@
+Modello dei dati:
+    I dati sono nel formato HDF5, Hierarchical Data Format
+    Può essere pensato come yn file system contenuto e descritto in un unico file. Directories -> Groups; Files -> Datasets
+
+
+
+
+Architettura del modello:
+
+    Residual Network:
+        Convolutional Layer
+        Batch Normalization  ( sostanzialmente ricentra e riscala ) 
+        ReLu 
+
+        4 ResBlocks
+
+        Dense (Linear) Layer
+        Sigmoid
+
+    ResBlock:
+    Suppongo che l'input venga copiato:
+
+        Una copia:
+
+            Max Pooling  (to reduce spacial size)
+            1x1 Convolution
+
+        L'altra:
+
+            Convolutional Layer
+            Batch Normalization
+            ReLU
+            DropOut (to help prevent overfitting, setting the values of a portion of the neurons to 0 ). We'll need to set an HyperParameter: DropOut rate
+
+            Convolution
+        
+        Input uniti:
+            Batch Normalization
+            ReLU
+            DropOut
+        
+
+FONTI:
+    RESNET PER LO STESSO PROBLEMA:  https://journals.plos.org/plosntds/article?id=10.1371/journal.pntd.0011118#pntd.0011118.ref038
+                                all'interno cita fonti che potrebbero essere utili
+    Codice per RESNET: https://github.com/antonior92/ecg-age-prediction (senza sigmoide finale in quanto è un problema di regressione,  nel nostro credo andrà messo (?) )
+    Chagas Disease: https://www.sciencedirect.com/science/article/pii/S014067361060061X?via%3Dihub#cesec10
+                    https://www.sciencedirect.com/science/article/pii/S0140673617316124?via%3Dihub
+                    https://pmc.ncbi.nlm.nih.gov/articles/PMC358257/?page=1
+    
+
+
+TODO:
+    Load sample data
+        Unito csv senza diagnosi con diagnosi
+    Re-sample data to 400 Hz
+    Learn about Chagas Disease

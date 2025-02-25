@@ -169,3 +169,8 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# csv and hdf5 files
+*.csv
+*.h5
+*.hdf5
