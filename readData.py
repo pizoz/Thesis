@@ -20,17 +20,19 @@ df_sample2 = pd.read_csv(main_filename)
 
 lista = ['exam_id','patient_id']
 
-# dati in formato csv con labeling Chagas
+# csv file with exam_id, patient_id and label
 df_master = pd.merge(df_sample2, df_sample1, on=lista, how='left')
-# salvataggio del file
+
+# saving it as  a file
+
 df_master.to_csv('data/merged.csv', index=False)
 
-# lettura del file HDF5 separando i due database
+# reading file HDF5 separing the two datasets
 ecgs = h5py.File(filename, 'r')
 exam_ids = np.array(ecgs['exam_id'])
 tracings = np.array(ecgs['tracings'])
 
-# popolamento dizionario exam_id e label Chagas
+# pupulating the dictionary exam_ids_and_signals
 exam_ids_to_chagas = dict()
 
 with open("data/merged.csv", newline="\n") as csvfile:
@@ -40,9 +42,10 @@ with open("data/merged.csv", newline="\n") as csvfile:
         boolean = bool(row['chagas'])
         exam_ids_to_chagas[exam_id] = boolean
 
+# list of files to read
 files = ["./data/exams_part"+str(i)+".hdf5" for i in range(0,18)]
-print(files)
-#dizionario exam id e ECG
+
+# populating the dictionary exam_ids_and_signals
 exam_ids_and_signals = dict()
 for filename in files:
     if (os.path.exists(filename) == False):
