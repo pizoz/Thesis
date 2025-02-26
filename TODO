@@ -53,5 +53,6 @@ FONTI:
 TODO:
     Load sample data
         Unito csv senza diagnosi con diagnosi
+        Dictionary with exam_id and ECG ( and exam - chagas label)
     Re-sample data to 400 Hz
     Learn about Chagas Disease
