@@ -48,14 +48,13 @@ FONTI:
                     https://www.sciencedirect.com/science/article/pii/S0140673617316124?via%3Dihub
                     https://pmc.ncbi.nlm.nih.gov/articles/PMC358257/?page=1
     
-
-
 TODO:
     - Learn about Chagas Disease
     - Learn about Deep Learning
-    - Load sample data
-        Unito csv senza diagnosi con diagnosi
-        Dictionary with exam_id and ECG ( and exam - chagas label)
-    - Re-sample PTB-XL dataset to 400 Hz
-    - Custom data loader
+    - Guarda ariel Informazione Multimediale / Elaborazione delle Immagini
+    - Guarda SSH per connettersi
+    - Save Data to .npy/.hdf5 file
+    - Implement the model
+        - Calculate ROC
+        - Scikit k-fold e Grid Search per Hyperparameters ParameterGrid
     
