@@ -57,4 +57,12 @@ TODO:
     - Implement the model
         - Calculate ROC
         - Scikit k-fold e Grid Search per Hyperparameters ParameterGrid
+
+Questions/Domande:
+    Come organizzo i layer convoluzionali?
+    Con quali filtri?
+    Come organizzo i blocchi? Quando downsample?
+    Non è meglio 4096? Almeno posso applicare stride 2
+
+    
     

@@ -24,9 +24,9 @@ class FinalDataset(Dataset):
         return signal, label
     
     def plotSignal(self, idx):
-        signal, label = self[idx]  # Get the correct signal and label
+        signal, label = self[idx]
 
-        num_leads = signal.shape[1]  # Should be 12 for a 12-lead ECG
+        num_leads = signal.shape[1] 
 
         fig, axes = plt.subplots(num_leads, 1, figsize=(10, 8), sharex=True)
 
