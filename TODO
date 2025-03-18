@@ -9,6 +9,7 @@ Architettura del modello:
 
     Residual Network:
         Convolutional Layer
+        output_size = floor((input_size - kernel_size +2padding)/stride)
         Batch Normalization  ( sostanzialmente ricentra e riscala ) 
         ReLu 
 
@@ -23,6 +24,7 @@ Architettura del modello:
         Una copia:
 
             Max Pooling  (to reduce spacial size)
+            output_size = floor((input_size - kernel_size)/stride)
             1x1 Convolution
 
         L'altra:
