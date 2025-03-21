@@ -67,4 +67,37 @@ Questions/Domande:
     Non è meglio 4096? Almeno posso applicare stride 2
 
     
-    
+Info su layer:
+    Conv1D:
+        parametri:
+            in_channels
+            out_channels = numero di filtri applicati
+            kernel_size = dimensione del filtro applicato
+            stride
+            padding
+            bias = True or False
+        Output shape:
+            = floor(((in_shape + 2*padding - dilation * (kernel size-1)-1)/stride)+1)
+    BatchNorm1D:
+        Normalizza i valori tra quelli di  un mini batch
+        parametri:
+            features = in_channels
+    MaxPool1D:
+        Metodo per diminuire dimensione dell'input, selezionando solo i valori maggiori nel kernel
+        parametri:
+            kernel_size
+            stride
+            padding
+        Ouput shape:
+            = floor(((in_shape + 2*padding - dilation * (kernel size-1)-1)/stride)+1)
+    ReLU
+        Activation Function
+    Dropout:
+        Durante la fase di allenamento alcuni dei valori vengono posti a 0 cosi da evitare overfitting
+        parametri:
+            p: probabilità di porre un valore = 0
+    Layer Denso
+    Sigmoide
+        per classificazione binaria
+
+        
