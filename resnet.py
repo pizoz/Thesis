@@ -1,11 +1,6 @@
 from torch import nn
 from math import floor
 
-def getOutputSize(input_size, kernel_size, stride, padding=0,dilation=1):
-    """
-    Calculate the output size of a convolutional layer
-    """
-    return floor(((input_size + 2*padding - dilation*(kernel_size-1) - 1)/stride) + 1)
 class ResNet(nn.Module):
     """
         ResNet model
