@@ -11,7 +11,7 @@ import h5py
 
 
 class FinalDataset(Dataset):
-    def __init__(self, file_path):
+    def __init__(self, file_path, indices=None):
         """
         Args:
             file_path (str): Path to the HDF5 file.
@@ -27,14 +27,21 @@ class FinalDataset(Dataset):
         # Memory mapping
         self.signals = np.memmap(file_path, mode='r', shape=self.data_shape, dtype=self.data_dtype)
         self.labels = np.memmap(file_path, mode='r', shape=self.label_shape, dtype=self.label_dtype)
+        
+        self.indices = indices if indices is not None else np.arange(self.data_shape[0])
     
     def __len__(self):
-        return self.data_shape[0]
+        return len(self.indices)
 
     def __getitem__(self, idx):
-        signal = self.signals[idx]
-        label = self.labels[idx]
+        real_idx = self.indices[idx]
+        """
+            Converts a non writable array to a writable array
+        """
+        signal = np.array(self.signals[real_idx], copy=True)  # Convert to writable array
+        label = np.array(self.labels[real_idx], copy=True)  # Convert to writable array
         return signal, label
+
     
     def plotSignal(self, idx):
         signal = self.signals[idx]

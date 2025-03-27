@@ -11,7 +11,7 @@ class ResNet(nn.Module):
         -Dense Layer
         -Sigmoid
     """
-    def __init(self,in_channels,out_channels):
+    def __init__(self,in_channels,out_channels):
         
         super().__init__()
         self.Conv1 = nn.Conv1d(in_channels, out_channels, kernel_size=3, stride=1, padding=1)
@@ -24,9 +24,18 @@ class ResNet(nn.Module):
             out_channels = double_channels
         self.ResBlocks = nn.Sequential(*resblocks)
         
+        # self.Dense = nn.Linear(95616, 1)
+        # self.Sigmoid = nn.Sigmoid()
         
     def forward(self, x):
-        pass
+        x = self.Conv1(x)
+        x = self.BatchNorm1(x)
+        x = self.ReLU1(x)
+        x = self.ResBlocks(x)
+        # x = x.mean(dim=2)
+        # x = self.Dense(x)
+        # x = self.Sigmoid(x)
+        return x
     
 class ResBlock(nn.Module):
     """
@@ -69,4 +78,5 @@ class ResBlock(nn.Module):
         x = self.ReLU2(x)
         x = self.Dropout2(x)
         return x
+    
     
