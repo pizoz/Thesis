@@ -23,6 +23,10 @@ class FinalDataset(Dataset):
             self.label_shape = f['labels'].shape
             self.data_dtype = f['signals'].dtype
             self.label_dtype = f['labels'].dtype
+            print(f"Data shape: {self.data_shape}")
+            print(f"Label shape: {self.label_shape}")
+            print(f"Data dtype: {self.data_dtype}")
+            print(f"Label dtype: {self.label_dtype}")
         
         # Memory mapping
         self.signals = np.memmap(file_path, mode='r', shape=self.data_shape, dtype=self.data_dtype)
@@ -68,3 +72,12 @@ class FinalDataset(Dataset):
 
         plt.tight_layout()
         plt.show()
+    
+    def getSubSet(self):
+        with h5py.File(self.file_path, 'r') as f:
+            data = f['signals'][:10000]
+            labels = f['labels'][:10000]
+        return data, labels
+
+
+        
