@@ -24,17 +24,22 @@ class ResNet(nn.Module):
             out_channels = double_channels
         self.ResBlocks = nn.Sequential(*resblocks)
         
-        # self.Dense = nn.Linear(95616, 1)
-        # self.Sigmoid = nn.Sigmoid()
+        self.Flatten = nn.Flatten()
+        self.Dense = nn.Linear(95616, 1)
+        self.Sigmoid = nn.Sigmoid()
         
     def forward(self, x):
+        print(x.shape)
+        x = x.permute(0,2,1)
+        print(x.shape)
         x = self.Conv1(x)
         x = self.BatchNorm1(x)
         x = self.ReLU1(x)
         x = self.ResBlocks(x)
-        # x = x.mean(dim=2)
-        # x = self.Dense(x)
-        # x = self.Sigmoid(x)
+        x = self.Flatten(x)
+        print(x.shape)
+        x = self.Dense(x)
+        x = self.Sigmoid(x)
         return x
     
 class ResBlock(nn.Module):
