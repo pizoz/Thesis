@@ -20,11 +20,11 @@ with h5py.File(input_file, "r") as f:
 
     index = 0
     for i in range(total_samples):
-        signal = signals[i, :, :]  # Accesso sicuro a un singolo segnale
+        signal = signals[i, :, :] 
 
-        if not np.all(signal == 0):  # Controllo se il segnale non è tutto 0
+        if not np.all(signal == 0):
             filtered_signals[index] = signal
-            filtered_labels[index] = labels[i]  # Scrivo solo label corrispondente
+            filtered_labels[index] = labels[i] 
             index += 1
             print(index, end="\r")
 
