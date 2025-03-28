@@ -29,15 +29,12 @@ class ResNet(nn.Module):
         self.Sigmoid = nn.Sigmoid()
         
     def forward(self, x):
-        print(x.shape)
         x = x.permute(0,2,1)
-        print(x.shape)
         x = self.Conv1(x)
         x = self.BatchNorm1(x)
         x = self.ReLU1(x)
         x = self.ResBlocks(x)
         x = self.Flatten(x)
-        print(x.shape)
         x = self.Dense(x)
         x = self.Sigmoid(x)
         return x

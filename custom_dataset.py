@@ -11,45 +11,37 @@ import h5py
 
 
 class FinalDataset(Dataset):
-    def __init__(self, file_path, indices=None):
+    def __init__(self, file_path,indices=None):
         """
         Args:
             file_path (str): Path to the HDF5 file.
+            indices (list, optional): List of indices to sample from the dataset. If None, all indices are used.
         """
         self.file_path = file_path
-        
-        with h5py.File(file_path, 'r') as f:
-            self.data_shape = f['signals'].shape
-            self.label_shape = f['labels'].shape
-            self.data_dtype = f['signals'].dtype
-            self.label_dtype = f['labels'].dtype
-            print(f"Data shape: {self.data_shape}")
-            print(f"Label shape: {self.label_shape}")
-            print(f"Data dtype: {self.data_dtype}")
-            print(f"Label dtype: {self.label_dtype}")
-        
-        # Memory mapping
-        self.signals = np.memmap(file_path, mode='r', shape=self.data_shape, dtype=self.data_dtype)
-        self.labels = np.memmap(file_path, mode='r', shape=self.label_shape, dtype=self.label_dtype)
-        
-        self.indices = indices if indices is not None else np.arange(self.data_shape[0])
+        with h5py.File(self.file_path, 'r') as f:
+            self.lenght = len(f['signals'])
+        self.indices = indices if indices is not None else np.arange(self.lenght)
     
     def __len__(self):
-        return len(self.indices)
+        return self.lenght
 
     def __getitem__(self, idx):
-        real_idx = self.indices[idx]
-        """
-            Converts a non writable array to a writable array
-        """
-        signal = np.array(self.signals[real_idx], copy=True)  # Convert to writable array
-        label = np.array(self.labels[real_idx], copy=True)  # Convert to writable array
+        
+        with h5py.File(self.file_path, 'r') as f:
+            signal = f['signals'][idx]
+            label = f['labels'][idx]
+        
+        signal = torch.tensor(signal, dtype=torch.float32)
+        label = torch.tensor(label, dtype=torch.float32)
+        
         return signal, label
 
-    
     def plotSignal(self, idx):
-        signal = self.signals[idx]
-        label = self.labels[idx]
+        
+        with h5py.File(self.file_path, 'r') as f:
+            signal = f['signals'][idx]
+            label = f['labels'][idx]
+        
         num_leads = signal.shape[1]
 
         fig, axes = plt.subplots(num_leads, 1, figsize=(10, 8), sharex=True)
@@ -72,12 +64,6 @@ class FinalDataset(Dataset):
 
         plt.tight_layout()
         plt.show()
-    
-    def getSubSet(self):
-        with h5py.File(self.file_path, 'r') as f:
-            data = f['signals'][:10000]
-            labels = f['labels'][:10000]
-        return data, labels
 
 
         
