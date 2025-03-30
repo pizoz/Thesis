@@ -173,3 +173,8 @@ cython_debug/
 # csv and hdf5 files
 /data
 *.hdf5
+*csv
+*.hea
+/records500
+.ini
+.pth

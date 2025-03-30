@@ -28,7 +28,6 @@ with h5py.File(input_file, "r") as f:
             index += 1
             print(index, end="\r")
 
-# Scrittura nel nuovo file HDF5
 with h5py.File(output_file, "w") as f:
     f.create_dataset("signals", data=filtered_signals[:index])
     f.create_dataset("labels", data=filtered_labels[:index])
