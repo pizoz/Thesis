@@ -3,7 +3,7 @@ Modello dei dati:
     Può essere pensato come yn file system contenuto e descritto in un unico file. Directories -> Groups; Files -> Datasets
 
 
-
+Random state = 42
 
 Architettura del modello:
 

@@ -25,7 +25,10 @@ class ResNet(nn.Module):
         self.ResBlocks = nn.Sequential(*resblocks)
         
         self.Flatten = nn.Flatten()
-        self.Dense = nn.Linear(95616, 1)
+        self.Dense = nn.Sequential(
+            nn.Linear(95616, 512),
+            nn.Linear(512, 1)
+        )
         self.Sigmoid = nn.Sigmoid()
         
     def forward(self, x):
