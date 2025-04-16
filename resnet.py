@@ -26,10 +26,10 @@ class ResNet(nn.Module):
         
         self.Flatten = nn.Flatten()
         self.Dense = nn.Sequential(
-            nn.Linear(95616, 512),
-            nn.Linear(512, 1)
+            nn.Linear(127488, 128),
+            nn.Linear(128, 1)
         )
-        self.Sigmoid = nn.Sigmoid()
+        # self.Sigmoid = nn.Sigmoid()
         
     def forward(self, x):
         x = x.permute(0,2,1)
@@ -39,8 +39,8 @@ class ResNet(nn.Module):
         x = self.ResBlocks(x)
         x = self.Flatten(x)
         x = self.Dense(x)
-        x = self.Sigmoid(x)
-        return x
+        # x = self.Sigmoid(x)
+        return x    
     
 class ResBlock(nn.Module):
     """
@@ -58,10 +58,11 @@ class ResBlock(nn.Module):
         self.BatchNorm1 = nn.BatchNorm1d(out_channels)
         self.ReLU1 = nn.ReLU()
         self.Dropout1 = nn.Dropout()
-        self.Conv2_B = nn.Conv1d(out_channels, out_channels, kernel_size=3, stride=1, padding=1)
+        self.Conv2_B = nn.Conv1d(out_channels, out_channels, kernel_size=5, stride=1, padding=2)
         self.BatchNorm2 = nn.BatchNorm1d(out_channels)
         self.ReLU2 = nn.ReLU()
         self.Dropout2 = nn.Dropout()
+    
     def forward(self, x):
         y = x
         x = self.MaxPool1(x)

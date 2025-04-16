@@ -176,5 +176,6 @@ cython_debug/
 *csv
 *.hea
 /records500
-.ini
-.pth
+*.ini
+*.pth
+*.png

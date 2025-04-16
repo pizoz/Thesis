@@ -4,6 +4,9 @@ Modello dei dati:
 
 
 Random state = 42
+Numero di segnali nel dataset = 366184
+Numero di segnali positivi = 8190
+Numero di segnali negativi = 357994
 
 Architettura del modello:
 
@@ -66,7 +69,6 @@ Questions/Domande:
     Come organizzo i blocchi? Quando downsample?
     Non è meglio 4096? Almeno posso applicare stride 2
 
-    
 Info su layer:
     Conv1D:
         parametri:
@@ -100,4 +102,8 @@ Info su layer:
     Sigmoide
         per classificazione binaria
 
-        
+TODO:
+    Aumentare epoche
+    Plottare Loss in train loop e il test loop (il test restituisce la loss media)
+    DownSampling?
+
