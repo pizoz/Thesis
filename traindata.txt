@@ -818,6 +818,7 @@ Classification Report:
 weighted avg     0.9023    0.9499    0.9255     24570
 
 BIGGER
+
 ==== Threshold: 0.1 ====
 Confusion Matrix:
 [[   8 1199]
@@ -951,3 +952,288 @@ Classification Report:
     accuracy                         0.6243      2457
    macro avg     0.7256    0.6301    0.5825      2457
 weighted avg     0.7283    0.6243    0.5802      2457
+
+ADAM BCE + L1 loss 50%
+
+learning_rate = 2e-4
+momentum = 0.9
+weight_decay = 1e-4
+
+# K-fold cross-validation parameters
+random_state = 42
+
+# Training parameters
+epochs = 100
+batch_size = 32
+
+patience, count = 10,0
+
+==== Threshold: 0.1 ====
+Confusion Matrix:
+[[   1 1239]
+ [   0 1217]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0     1.0000    0.0008    0.0016      1240
+           1     0.4955    1.0000    0.6627      1217
+
+    accuracy                         0.4957      2457
+   macro avg     0.7478    0.5004    0.3321      2457
+weighted avg     0.7501    0.4957    0.3290      2457
+
+
+==== Threshold: 0.2 ====
+Confusion Matrix:
+[[  18 1222]
+ [   2 1215]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0     0.9000    0.0145    0.0286      1240
+           1     0.4986    0.9984    0.6650      1217
+
+    accuracy                         0.5018      2457
+   macro avg     0.6993    0.5064    0.3468      2457
+weighted avg     0.7012    0.5018    0.3438      2457
+
+
+==== Threshold: 0.3 ====
+Confusion Matrix:
+[[ 198 1042]
+ [  13 1204]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0     0.9384    0.1597    0.2729      1240
+           1     0.5361    0.9893    0.6954      1217
+
+    accuracy                         0.5706      2457
+   macro avg     0.7372    0.5745    0.4841      2457
+weighted avg     0.7391    0.5706    0.4822      2457
+
+
+==== Threshold: 0.4 ====
+Confusion Matrix:
+[[ 547  693]
+ [  98 1119]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0     0.8481    0.4411    0.5804      1240
+           1     0.6175    0.9195    0.7389      1217
+
+    accuracy                         0.6781      2457
+   macro avg     0.7328    0.6803    0.6596      2457
+weighted avg     0.7339    0.6781    0.6589      2457
+
+
+==== Threshold: 0.5 ====
+Confusion Matrix:
+[[991 249]
+ [403 814]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0     0.7109    0.7992    0.7525      1240
+           1     0.7658    0.6689    0.7140      1217
+
+    accuracy                         0.7346      2457
+   macro avg     0.7383    0.7340    0.7333      2457
+weighted avg     0.7381    0.7346    0.7334      2457
+
+
+==== Threshold: 0.6 ====
+Confusion Matrix:
+[[1196   44]
+ [ 769  448]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0     0.6087    0.9645    0.7463      1240
+           1     0.9106    0.3681    0.5243      1217
+
+    accuracy                         0.6691      2457
+   macro avg     0.7596    0.6663    0.6353      2457
+weighted avg     0.7582    0.6691    0.6363      2457
+
+
+==== Threshold: 0.7 ====
+Confusion Matrix:
+[[1221   19]
+ [ 982  235]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0     0.5542    0.9847    0.7093      1240
+           1     0.9252    0.1931    0.3195      1217
+
+    accuracy                         0.5926      2457
+   macro avg     0.7397    0.5889    0.5144      2457
+weighted avg     0.7380    0.5926    0.5162      2457
+
+
+==== Threshold: 0.8 ====
+Confusion Matrix:
+[[1234    6]
+ [1140   77]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0     0.5198    0.9952    0.6829      1240
+           1     0.9277    0.0633    0.1185      1217
+
+    accuracy                         0.5336      2457
+   macro avg     0.7238    0.5292    0.4007      2457
+weighted avg     0.7218    0.5336    0.4033      2457
+
+
+==== Threshold: 0.9 ====
+Confusion Matrix:
+[[1240    0]
+ [1215    2]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0     0.5051    1.0000    0.6712      1240
+           1     1.0000    0.0016    0.0033      1217
+
+    accuracy                         0.5055      2457
+   macro avg     0.7525    0.5008    0.3372      2457
+weighted avg     0.7502    0.5055    0.3404      2457
+
+95%
+
+==== Threshold: 0.1 ====
+Confusion Matrix:
+[[  427 22926]
+ [    2  1215]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0     0.9953    0.0183    0.0359     23353
+           1     0.0503    0.9984    0.0958      1217
+
+    accuracy                         0.0668     24570
+   macro avg     0.5228    0.5083    0.0659     24570
+weighted avg     0.9485    0.0668    0.0389     24570
+
+
+==== Threshold: 0.2 ====
+Confusion Matrix:
+[[ 1915 21438]
+ [   14  1203]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0     0.9927    0.0820    0.1515     23353
+           1     0.0531    0.9885    0.1008      1217
+
+    accuracy                         0.1269     24570
+   macro avg     0.5229    0.5352    0.1262     24570
+weighted avg     0.9462    0.1269    0.1490     24570
+
+
+==== Threshold: 0.3 ====
+Confusion Matrix:
+[[ 4828 18525]
+ [   29  1188]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0     0.9940    0.2067    0.3423     23353
+           1     0.0603    0.9762    0.1135      1217
+
+    accuracy                         0.2449     24570
+   macro avg     0.5271    0.5915    0.2279     24570
+weighted avg     0.9478    0.2449    0.3310     24570
+
+
+==== Threshold: 0.4 ====
+Confusion Matrix:
+[[ 9129 14224]
+ [   79  1138]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0     0.9914    0.3909    0.5607     23353
+           1     0.0741    0.9351    0.1373      1217
+
+    accuracy                         0.4179     24570
+   macro avg     0.5327    0.6630    0.3490     24570
+weighted avg     0.9460    0.4179    0.5398     24570
+
+
+==== Threshold: 0.5 ====
+Confusion Matrix:
+[[14881  8472]
+ [  214  1003]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0     0.9858    0.6372    0.7741     23353
+           1     0.1059    0.8242    0.1876      1217
+
+    accuracy                         0.6465     24570
+   macro avg     0.5458    0.7307    0.4809     24570
+weighted avg     0.9422    0.6465    0.7450     24570
+
+
+==== Threshold: 0.6 ====
+Confusion Matrix:
+[[20485  2868]
+ [  529   688]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0     0.9748    0.8772    0.9234     23353
+           1     0.1935    0.5653    0.2883      1217
+
+    accuracy                         0.8617     24570
+   macro avg     0.5842    0.7213    0.6059     24570
+weighted avg     0.9361    0.8617    0.8920     24570
+
+
+==== Threshold: 0.7 ====
+Confusion Matrix:
+[[23116   237]
+ [ 1035   182]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0     0.9571    0.9899    0.9732     23353
+           1     0.4344    0.1495    0.2225      1217
+
+    accuracy                         0.9482     24570
+   macro avg     0.6958    0.5697    0.5979     24570
+weighted avg     0.9313    0.9482    0.9360     24570
+
+
+==== Threshold: 0.8 ====
+Confusion Matrix:
+[[23353     0]
+ [ 1216     1]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0     0.9505    1.0000    0.9746     23353
+           1     1.0000    0.0008    0.0016      1217
+
+    accuracy                         0.9505     24570
+   macro avg     0.9753    0.5004    0.4881     24570
+weighted avg     0.9530    0.9505    0.9264     24570
+
+
+==== Threshold: 0.9 ====
+Confusion Matrix:
+[[23353     0]
+ [ 1217     0]]
+Classification Report:
+              precision    recall  f1-score   support
+
+           0     0.9505    1.0000    0.9746     23353
+           1     0.0000    0.0000    0.0000      1217
+
+    accuracy                         0.9505     24570
+   macro avg     0.4752    0.5000    0.4873     24570
+weighted avg     0.9034    0.9505    0.9263     24570
