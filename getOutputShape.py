@@ -1,5 +1,8 @@
 import math
+import torch
 
+cuda = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+print(cuda)
 def get_one_layer_output(in_channels, padding = 0, kernel_size = 3, stride=1, dilation=1):
     
     return math.floor(((in_channels + 2*padding - dilation*(kernel_size-1) - 1)/stride) + 1)

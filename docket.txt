@@ -1,0 +1,6 @@
+Create dockerfile
+docker build -f Dockerfile -t pizzocri_image
+docker run -it --name pizzocri_container --gpus all -v /home/pizzocri/Thesis:/workspace -v /home/pizzocri/data:/workspace/data pizzocri_image bash
+docker start pizzocri_container
+docker ps -
+docker stop pizzocri_container

@@ -26,7 +26,7 @@ class ResNet(nn.Module):
         
         self.Flatten = nn.Flatten()
         self.Dense = nn.Sequential(
-            nn.Linear(127488, 128),
+            nn.Linear(254976, 128),
             nn.Linear(128, 1)
         )
         # self.Sigmoid = nn.Sigmoid()
@@ -54,7 +54,7 @@ class ResBlock(nn.Module):
         super().__init__()
         self.MaxPool1 = nn.MaxPool1d(kernel_size=3, stride=2)
         self.Conv1_A = nn.Conv1d(in_channels, out_channels, kernel_size=1, stride=1)
-        self.Conv1_B = nn.Conv1d(in_channels, out_channels, kernel_size=3, stride=2)
+        self.Conv1_B = nn.Conv1d(in_channels, out_channels, kernel_size=17, stride=2,padding = 7)
         self.BatchNorm1 = nn.BatchNorm1d(out_channels)
         self.ReLU1 = nn.ReLU()
         self.Dropout1 = nn.Dropout()
