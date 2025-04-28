@@ -178,3 +178,4 @@ cython_debug/
 /records500
 *.ini
 *.pth
+*.png

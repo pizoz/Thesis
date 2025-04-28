@@ -107,3 +107,25 @@ TODO:
     Plottare Loss in train loop e il test loop (il test restituisce la loss media)
     DownSampling?
 
+
+Presentazione Risultati:
+    Esperimenti precedenti e risultati
+    
+Tesi:
+    Scrittura introduzione su chagas
+    Previous literature
+    Ai on ECG
+
+Segmentare i battiti
+Funziona Meglio?
+
+
+
+Validation Loss < della Training?
+    The most common reason is regularization (e.g., dropout), since it applies during training, but not during validation & testing. If we add the regularization loss to the validation loss, things look much different
+    Oh and the training loss is measured *during* each epoch, while the validation loss is measured *after* each epoch, so on average the training loss is measured ½ an epoch earlier. If we shift it by ½ an epoch to the left (where is should be), things again look much different. 
+
+
+
+Onda P: attività atriale
+Onda T: 
