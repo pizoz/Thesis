@@ -1,0 +1,10 @@
+Average Beat 95%
+
+Best hyperparameters found: {'lr': 0.001, 'wd': 1e-05, 'l1_lambda': 1e-05}
+Best validation loss: 0.5610
+
+Loaded overall best model for final testing.
+Final Test Loss with best model ({'lr': 0.001, 'wd': 1e-05, 'l1_lambda': 1e-05}): 0.5667
+Saved best model with params: {'lr': 0.001, 'wd': 1e-05, 'l1_lambda': 1e-05}
+
+Average Beat 50%

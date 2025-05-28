@@ -179,3 +179,5 @@ cython_debug/
 *.ini
 *.pth
 *.png
+*.tar
+"risultati_reti_finali"
