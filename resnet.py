@@ -159,6 +159,7 @@ class ResNet2(nn.Module):
             # nn.Linear(127488, 128),
             # nn.Linear(254976, 128),
             nn.Linear(3072,128),
+            # nn.Linear(13312, 128),
             nn.Linear(128, 1)
         )
         # self.Sigmoid = nn.Sigmoid()

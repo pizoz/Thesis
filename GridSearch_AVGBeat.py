@@ -14,8 +14,8 @@ import copy
 import itertools # Import itertools for product of hyperparameters
 
 # %%
-file_path= "./data/average_beats.hdf5"
-dataset2 = BeatsDataset(file_path ,downsample=True,majority_ratio=0.95)
+file_path= "./data/average_beats_qrst.hdf5"
+dataset2 = BeatsDataset(file_path ,downsample=True,majority_ratio=0.50)
 
 # %%
 # --- Hyperparameter Grids ---
@@ -53,9 +53,9 @@ train_idx_2, val_idx_2 = train_test_split(
     random_state=random_state,
     stratify=dataset2.labels[train_val_idx_2]
 )
-train_loader_2 = DataLoader(BeatsDataset("./data/average_beats.hdf5", indices = dataset2.indices[train_idx_2]), batch_size=batch_size, shuffle=True)
-val_loader_2   = DataLoader(BeatsDataset("./data/average_beats.hdf5", indices = dataset2.indices[val_idx_2]),   batch_size=batch_size, shuffle=False)
-test_loader_2  = DataLoader(BeatsDataset("./data/average_beats.hdf5", indices = dataset2.indices[test_idx_2]),  batch_size=batch_size, shuffle=False)
+train_loader_2 = DataLoader(BeatsDataset("./data/average_beats_qrst.hdf5", indices = dataset2.indices[train_idx_2]), batch_size=batch_size, shuffle=True)
+val_loader_2   = DataLoader(BeatsDataset("./data/average_beats_qrst.hdf5", indices = dataset2.indices[val_idx_2]),   batch_size=batch_size, shuffle=False)
+test_loader_2  = DataLoader(BeatsDataset("./data/average_beats_qrst.hdf5", indices = dataset2.indices[test_idx_2]),  batch_size=batch_size, shuffle=False)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 print(f"Using device: {device}")
@@ -109,7 +109,7 @@ def test_loop(dataloader, model, loss_fn, device, val=False, current_hyperparams
         RocCurveDisplay.from_predictions(all_targets, probabilities, name=f"ROC Curve ({current_hyperparams_str})")
         plt.plot([0, 1], [0, 1], linestyle='--', color='gray')
         plt.title(f'ROC Curve - Best Model ({current_hyperparams_str})')
-        plt.savefig(f'roc_curve_RETE_BEATS_BEST_MODEL.png')
+        plt.savefig(f'roc_curve_RETE_BEATS_QRST_BEST_MODEL.png')
         plt.show()
     return total_loss / len(dataloader)
 
@@ -192,7 +192,7 @@ if overall_best_model_state is not None:
     final_test_loss = test_loop(test_loader_2, model, loss_fn, device, val=True, current_hyperparams_str=str(best_hyperparams))
     print(f"Final Test Loss with best model ({best_hyperparams}): {final_test_loss:.4f}")
 
-    torch.save(overall_best_model_state, f"model_RETE_BEATS_BEST_GRID_SEARCH_FULL_EPOCHS_95.pth") # Updated filename
+    torch.save(overall_best_model_state, f"model_RETE_BEATS_QRST_BEST_GRID_SEARCH_FULL_EPOCHS.pth") # Updated filename
     print(f"Saved best model with params: {best_hyperparams}")
 else:
     print("No model was successfully trained or no improvement found during grid search.")
@@ -215,7 +215,7 @@ from FocalLoss import FocalLoss # Assuming FocalLoss.py is available
 import copy
 import itertools
 file_path= "./data/average_beats.hdf5"
-dataset2 = BeatsDataset(file_path ,downsample=True,majority_ratio=0.95)
+dataset2 = BeatsDataset(file_path ,downsample=True,majority_ratio=0.50)
 
 # --- Hyperparameter Grids ---
 learning_rates_grid = [1e-4, 5e-4, 1e-3]
@@ -250,14 +250,14 @@ train_idx_2, val_idx_2 = train_test_split(
     random_state=random_state,
     stratify=dataset2.labels[train_val_idx_2]
 )
-train_loader_2 = DataLoader(BeatsDataset("./data/average_beats.hdf5", indices = dataset2.indices[train_idx_2]), batch_size=batch_size, shuffle=True)
-val_loader_2   = DataLoader(BeatsDataset("./data/average_beats.hdf5", indices = dataset2.indices[val_idx_2]),   batch_size=batch_size, shuffle=False)
-test_loader_2  = DataLoader(BeatsDataset("./data/average_beats.hdf5", indices = dataset2.indices[test_idx_2]),  batch_size=batch_size, shuffle=False)
+train_loader_2 = DataLoader(BeatsDataset("./data/average_beats_qrst.hdf5", indices = dataset2.indices[train_idx_2]), batch_size=batch_size, shuffle=True)
+val_loader_2   = DataLoader(BeatsDataset("./data/average_beats_qrst.hdf5", indices = dataset2.indices[val_idx_2]),   batch_size=batch_size, shuffle=False)
+test_loader_2  = DataLoader(BeatsDataset("./data/average_beats_qrst.hdf5", indices = dataset2.indices[test_idx_2]),  batch_size=batch_size, shuffle=False)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 print(f"Using device: {device}")
 old_model = ResNet2(in_channels, out_channels).to(device)
-old_model.load_state_dict(torch.load("model_RETE_BEATS_BEST_GRID_SEARCH_FULL_EPOCHS_95.pth"))
+old_model.load_state_dict(torch.load("model_RETE_BEATS_QRST_BEST_GRID_SEARCH_FULL_EPOCHS.pth"))
 old_model.eval()
 
 # Generate predictions and plot ROC curve
@@ -293,7 +293,7 @@ plt.scatter(optimal_fpr, optimal_tpr, color='red')
 
 plt.title('ROC Curve')
 plt.legend()
-plt.savefig('optimalThreshold_RETE_BEATS_BEST_GRID_SEARCH_FULL_EPOCHS_95.png')
+plt.savefig('optimalThreshold_RETE_BEATS_QRST_BEST_GRID_SEARCH_FULL_EPOCHS.png')
 plt.show()
 precision, recall, pr_thresholds = precision_recall_curve(all_targets.numpy(), probabilities.numpy())
 
@@ -304,19 +304,19 @@ plt.xlabel('Recall')
 plt.ylabel('Precision')
 plt.title('Curva Precision-Recall')
 plt.grid(True)
-plt.savefig('PR_Curve_RETE_BEATS_BEST_GRID_SEARCH_FULL_EPOCHS_95.png')
+plt.savefig('PR_Curve_RETE_BEATS_QRST_BEST_GRID_SEARCH_FULL_EPOCHS.png')
 plt.show()
-
+# %%
 # Optionally, find a "best" threshold from the PR curve by maximizing the F1-score
 # This threshold might differ from the ROC-derived one because it directly optimizes
 # for a balance between precision and recall.
 f1_scores = 2 * (precision * recall) / (precision + recall + 1e-10) # Added a small epsilon to prevent division by zero for numerical stability
 optimal_f1_idx = np.argmax(f1_scores)
 optimal_pr_threshold = pr_thresholds[optimal_f1_idx]
-print(f"Best threshold (from PR, maximizing F1-score): {optimal_pr_threshold:.2f}")
-print(f"Precision at optimal PR threshold: {precision[optimal_f1_idx]:.2f}")
-print(f"Recall at optimal PR threshold: {recall[optimal_f1_idx]:.2f}")
-print(f"F1-score at optimal PR threshold: {f1_scores[optimal_f1_idx]:.2f}")
+print(f"Best threshold (from PR, maximizing F1-score): {optimal_pr_threshold:.4f}")
+print(f"Precision at optimal PR threshold: {precision[optimal_f1_idx]:.4f}")
+print(f"Recall at optimal PR threshold: {recall[optimal_f1_idx]:.4f}")
+print(f"F1-score at optimal PR threshold: {f1_scores[optimal_f1_idx]:.4f}")
 
 # %%
 probabilities_numpy = probabilities.numpy()
