@@ -1,0 +1,2 @@
+<h3>Deep Learning Models for Chagas Disease Screening from ECGs</h3>
+This repository contains the work from the thesis "Deep Learning Models for Screening of Chagas Disease from Electrocardiograms". The project explores the use of deep learning, specifically Residual Neural Networks (ResNets), to create an effective, low-cost, and non-invasive screening tool for Chagas disease using 12-lead ECG signals.
